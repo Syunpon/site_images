@@ -64,7 +64,6 @@
         if (xmlhttp.readyState == 4) {
           if (xmlhttp.status == 200) { 
             var text = xmlhttp.responseText.split("\n");
-            //if (text[3]=!"damedesu") {
                 for (var i=0;i<3;i++) {
                     var elem = document.getElementById("output"+(i*2+1));
                     elem.innerText = text[i];
@@ -75,10 +74,6 @@
                 elem.innerText = "古語";
                 var elem = document.getElementById("output4");
                 elem.innerText = "英単語";
-            //}else {
-                //var elem = document.getElementById("output0");
-                //elem.innerText = "現在は公開を停止しています\n("+text[3]+")";
-            //}
           } else {
             var elem = document.getElementById("output0");
             elem.innerText = "取得できませんでした";
