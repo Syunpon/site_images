@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="​black-translucent">
+<link rel="apple-touch-icon-precomposed" href="https://syunpon.github.io/site_images/IMG_0066.jpg" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<style>
+  body {
+    background: #f5f5f5;
+    font-family: Meiryo;
+  }
+  #output0 {
+      border: 1px solid #cccccc;
+      background: #c0c0c0;
+      text-align: left;
+      padding: 10px;
+  }
+  #output1 {
+      border: 1px solid #cccccc;
+      background: #ffffff;
+      text-align: right;
+      padding: 10px;
+  }
+  #output2 {
+      border: 1px solid #cccccc;
+      background: #c0c0c0;
+      text-align: left;
+      padding: 10px;
+  }
+  #output3 {
+      border: 1px solid #cccccc;
+      background: #ffffff;
+      text-align: right;
+      padding: 10px;
+  }
+  #output4 {
+      border: 1px solid #cccccc;
+      background: #c0c0c0;
+      text-align: left;
+      padding: 10px;
+  }
+  #output5 {
+      border: 1px solid #cccccc;
+      background: #ffffff;
+      text-align: right;
+      padding: 10px;
+  }
+  #title {
+      border: 2px solid #cccccc;
+      background: #ffffff;
+      text-align: center;
+      padding: 10px;
+      margin-top:30;
+  }
+</style>
+    <title></title>
+  <script type="text/javascript">
+    function getData() {
+      //var xmlhttp = createXMLHttpRequest(); //旧バージョンのIEなどに対応する場合
+      var xmlhttp = new XMLHttpRequest();
+      var dc;
+      xmlhttp.onreadystatechange = function() {
+        if (xmlhttp.readyState == 4) {
+          if (xmlhttp.status == 200) { 
+            var text = xmlhttp.responseText.split("\n");
+            if (text[3]=!"damedesu") {
+                for (var i=0;i<3;i++) {
+                    var elem = document.getElementById("output"+(i*2+1));
+                    elem.innerText = text[i];
+                }
+                var elem = document.getElementById("output0");
+                elem.innerText = "漢字";
+                var elem = document.getElementById("output2");
+                elem.innerText = "古語";
+                var elem = document.getElementById("output4");
+                elem.innerText = "英単語";
+            }else {
+                var elem = document.getElementById("output0");
+                elem.innerText = "現在は公開を停止しています\n("+text[3]+")";
+            }
+          } else {
+            var elem = document.getElementById("output0");
+            elem.innerText = "取得できませんでした";
+          } 
+        }
+      }
+      xmlhttp.open("GET", "https://docs.google.com/spreadsheets/d/e/2PACX-1vSsT2sCGg-sUoKCTs1duvlIZ0E3hptcUKPNTaC5Tu1MEnOhNe7cQoqUT8xHxWvV3yzWpQvNmOGdf_2c/pub?output=csv");
+      xmlhttp.send();
+    }
+    
+    function createXMLHttpRequest(){
+      if(window.XMLHttpRequest){return new XMLHttpRequest()}
+      if(window.ActiveXObject){
+        try{return new ActiveXObject("Msxml2.XMLHTTP.6.0")}catch(e){}
+        try{return new ActiveXObject("Msxml2.XMLHTTP.3.0")}catch(e){}
+        try{return new ActiveXObject("Microsoft.XMLHTTP")}catch(e){}
+      }
+      return false;
+    }
+    getData();
+  </script>
+</head>
+<body>
+  <!--<input id="Button_Get" type="button" value="取得" onclick="getData();" />
+  <div>受信情報</div>-->
+  <br>
+  <h1><div id="title">1B</div></h1>
+  <h2><div id="output0"></div></h2>
+  <div id="output1"></div>
+  <h2><div id="output2"></div></h2>
+  <div id="output3"></div>
+  <h2><div id="output4"></div></h2>
+  <div id="output5"></div>
+</body>
+</html>
